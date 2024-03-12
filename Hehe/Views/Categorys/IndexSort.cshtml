@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Hehe.Models.Categorys>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexSort</title>
+</head>
+<body>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Ten the loai", "IndexSort", new { sortOrder = ViewBag.CategoryName })
+            </th>
+            <th>
+                @Html.ActionLink("Ghi chu", "IndexSort", new { sortOrder = ViewBag.CategoryNote })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category_Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

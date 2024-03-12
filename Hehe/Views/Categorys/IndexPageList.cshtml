@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<Hehe.Models.Categorys>
+@using PagedList.Mvc;
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexPageList</title>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Ten the loai")
+            </th>
+            <th>
+                @Html.DisplayName("Ghi chu")
+            </th>
+            <th>
+                @Html.DisplayName("Trang thai")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+@Html.PagedListPager(Model, page => Url.Action("IndexPageList", new { page}))
+</body>
+</html>
